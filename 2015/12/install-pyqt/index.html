@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>在MacOS上安装PyQt5 | Lolo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。
+因为计划在寒假里完成的项目有一个就是做一个“北大校园卡打卡器”，所以需要学习一下PC/SC相关的API. 在网上能检索到的教程并不多，大概过了一遍几个比较流行的Wrapper，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在MacOS上安装PyQt5">
+<meta property="og:url" content="http://hexo4witty.sinaapp.com/2015/12/install-pyqt/index.html">
+<meta property="og:site_name" content="Lolo's Blog">
+<meta property="og:description" content="今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。
+因为计划在寒假里完成的项目有一个就是做一个“北大校园卡打卡器”，所以需要学习一下PC/SC相关的API. 在网上能检索到的教程并不多，大概过了一遍几个比较流行的Wrapper，">
+<meta property="og:image" content="http://hexo4witty.sinaapp.com/assests/img/qtdemo.jpg">
+<meta property="og:updated_time" content="2015-12-21T16:48:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在MacOS上安装PyQt5">
+<meta name="twitter:description" content="今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。
+因为计划在寒假里完成的项目有一个就是做一个“北大校园卡打卡器”，所以需要学习一下PC/SC相关的API. 在网上能检索到的教程并不多，大概过了一遍几个比较流行的Wrapper，">
+  
+    <link rel="alternative" href="/atom.xml" title="Lolo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars2.githubusercontent.com/u/13470423?v=3&amp;s=460" class="js-avatar">
+			
+		</a>
+
+		<!-- change -->
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Lolo&#39;s Blog</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">A fool living in the amazing world.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>Tags</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>A propos</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="http://www.luolc.com">主站</a></li>
+				        
+							<li><a href="/">博客</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Luolc" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/Luolc1996" title="weibo">weibo</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/Luolc" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://nullspace.cn/">Zhaoyang</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">北京大学2014级，本科在读，专业方向GIS|Psychology. 业余编程爱好者，热爱心理学与国际政治。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Lolo&#39;s Blog</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars2.githubusercontent.com/u/13470423?v=3&amp;s=460" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Lolo&#39;s Blog</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">A fool living in the amazing world.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="http://www.luolc.com">主站</a></li>
+		        
+					<li><a href="/">博客</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Luolc" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/Luolc1996" title="weibo">weibo</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/Luolc" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-install-pyqt" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/install-pyqt/" class="article-date">
+  	<time datetime="2015-12-21T16:48:54.000Z" itemprop="datePublished">2015-12-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在MacOS上安装PyQt5
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。</p>
+<p>因为计划在寒假里完成的项目有一个就是做一个“北大校园卡打卡器”，所以需要学习一下PC/SC相关的API. 在网上能检索到的教程并不多，大概过了一遍几个比较流行的Wrapper，直观上感觉由Python封装的pyscard应当是其中比较适合我来使用的。当然具体的学习实践统统要丢到假期里完成，最近真的要好好复习，否则Die…（咦这句话怎么耳熟）</p>
+<p>这个项目目前看起来要实现的最主要部分就是PC平台的客户端（PC/SC也有Android支持，然而一来成熟的库很少，二来感觉产品成熟之前还不需要迁移到移动平台），为了能让使用者的体验稍微好一点，我们需要完成一个GUI.</p>
+<a id="more"></a>
+<p>目前Python最流行的GUI编写应当就是PyQt了，是Qt库的Python版本。对于无比强大的跨平台库Qt也是早有耳闻，不过还一直没有真正接触。正好假期的计划里很可能会用到，正好就把开发环境配置一下。</p>
+<h3 id="u96F6_u3001_u51C6_u5907_u5DE5_u4F5C"><a href="#u96F6_u3001_u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="零、准备工作"></a>零、准备工作</h3><p>我下载的版本为<a href="https://riverbankcomputing.com/software/pyqt/download5" target="_blank" rel="external">PyQt5.5.1</a>，除了Linux和MacOS之外你也可以在这里找到Windows上的安装包。</p>
+<p>在安装PyQt5之前，你需要准备：</p>
+<ul>
+<li>Xcode</li>
+<li>Qt，我使用的是Qt5.5.1 Open Source版，Qt官网的下载比较慢，可以去北理工的<a href="http://mirror.bit.edu.cn/qtproject/archive/qt/5.5/5.5.1/qt-opensource-mac-x64-clang-5.5.1.dmg" target="_blank" rel="external">镜像地址</a>下载。</li>
+<li>SIP，<a href="https://riverbankcomputing.com/software/sip/download" target="_blank" rel="external">下载地址</a>，我使用的版本为sip-4.17</li>
+<li>PyQt5，<a href="https://riverbankcomputing.com/software/pyqt/download5" target="_blank" rel="external">下载地址</a>，我使用的版本为PyQt-gpl-5.5.1</li>
+</ul>
+<p>安装Xcode是因为我们需要gcc来编译PyQt，而Xcode内置gcc. 如果你从其他途径安装了gcc可以跳过此步。</p>
+<p>Qt，也就是这个著名的C++ GUI库，上面给出了可用的镜像，网速够快的话直接去官网下载也可以。</p>
+<p>SIP，是将C++库绑定到Python的工具。</p>
+<p>为了方便后续的操作，可以在Users/[User Name]/下新建一个pyqt-install文件夹，并把sip-4.17.tar.gz和PyQt-gpl-5.5.1.tar.gz复制在该目录下解压。</p>
+<h3 id="u4E00_u3001_u5B89_u88C5"><a href="#u4E00_u3001_u5B89_u88C5" class="headerlink" title="一、安装"></a>一、安装</h3><p>(1.0) 安装Qt<br>直接运行下载下来的dmg即可。<br>可以在.bash_profile下设置一下PATH以方便后续操作。<br>在文末加入形如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="string">"/Users/LuoLiangchen/Library/Qt5.5.1/5.5/clang_64/bin:<span class="variable">$&#123;PATH&#125;</span>"</span></span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
+<p>(1.1) 编译SIP<br>打开Terminal，把当前目录设为sip-4.17<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd pyqt-install/sip-4.17</span><br></pre></td></tr></table></figure></p>
+<p>配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 configure.py</span><br></pre></td></tr></table></figure></p>
+<p>完成后进行编译：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<p>编译结束后安装：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
+<p>(1.2) 编译PyQt5<br>过程基本与前面类似<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd ../PyQt-gpl-5.5.1</span><br></pre></td></tr></table></figure></p>
+<p>配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 configure.py</span><br></pre></td></tr></table></figure></p>
+<p>期间会遇到询问你是否接受LGPL协议<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#10;Do you accept the terms of the license?</span><br></pre></td></tr></table></figure></p>
+<p>回答yes继续</p>
+<p>编译：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<p>这一次会编译比较久</p>
+<p>等待编译完成后安装：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
+<p>至此安装结束~</p>
+<h3 id="u4E8C_u3001_u6D4B_u8BD5_u5B89_u88C5_u7ED3_u679C"><a href="#u4E8C_u3001_u6D4B_u8BD5_u5B89_u88C5_u7ED3_u679C" class="headerlink" title="二、测试安装结果"></a>二、测试安装结果</h3><p>你可以利用PyQt里的examples测试安装结果，不同的PyQt版本examples的路径可能不同，请注意按照你安装的版本来<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd examples/qtdemo&#10;$ python3 qtdemo.py</span><br></pre></td></tr></table></figure></p>
+<p>如果弹出一个Qt Examples窗口则以上安装成功。</p>
+<p><img src="/assests/img/qtdemo.jpg" alt="qtdemo"></p>
+<h3 id="u4E09_u3001_u5B89_u88C5_u4E2D_u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898"><a href="#u4E09_u3001_u5B89_u88C5_u4E2D_u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="三、安装中可能遇到的问题"></a>三、安装中可能遇到的问题</h3><p>(3.0) PyQt5和Qt的协议不匹配<br>在配置PyQt5时可能出现如下问题：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: This version of PyQt5 and the commercial version of Qt have incompatible licenses.</span><br></pre></td></tr></table></figure></p>
+<p>错误原因是Qt的版本是商业版本，而PyQt5是开源版本的。<br>这个错误蛮诡异因为下载Qt是我也选择的是开源版本，目测是Qt给的离线版本只有商业版。所以如果网速可以的话可以用Qt的在线版本下载，应该可以避免这个问题。</p>
+<p>不过这个错误还是可以处理一下的。我们打开PyQt5下的configure.py，查找刚刚的错误message：This version of PyQt5 and the commercial…<br>检索到如下代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> introspecting <span class="keyword">and</span> target_config.qt_licensee <span class="keyword">not</span> <span class="keyword">in</span> OPEN_SOURCE_LICENSEES <span class="keyword">and</span> ltype == <span class="string">'GPL'</span>:</span><br><span class="line">         error(</span><br><span class="line">                 <span class="string">"This version of PyQt5 and the commercial version of Qt have "</span></span><br><span class="line">                 <span class="string">"incompatible licenses."</span>)</span><br></pre></td></tr></table></figure></p>
+<p>大概能猜出这里就是判断Qt是否是开源版本的语句，我们直接把它注释掉，重新运行<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 configure.py</span><br></pre></td></tr></table></figure></p>
+<p>成功！<br>『当然，这个方法有点违背开源精神…不过这个锅得甩给Qt，自己说好的开源版本给了商业版的链接算什么嘛』</p>
+<p>(3.1) 缺少qgeolocation.h<br>在执行make编译中，出现如下错误<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/LuoLiangchen/pyqt-install/sip-4.17/QtPositioning/qgeolocation.sip:28:10:&#10;                             fatal &#62;error: &#39;qgeolocation.h&#39; file not found&#10; #include &#60;qgeolocation.h&#62;&#10;           ^&#10; 1 error generated.&#10; make[1]: *** [sipQtPositioningcmodule.o] Error 1&#10; make: *** [sub-QtPositioning-make_first-ordered] Error 2</span><br></pre></td></tr></table></figure></p>
+<p>缺少头文件这个真是有点蛋疼。<br>PyQt包少东西…<br>去StackOverflow查了一下，果然也有人掉了这个坑。</p>
+<p>解决方案是在/PyQt-gpl-5.5.1/QtPositioning/下自己新建一下qgeolocation.h，然后去<a href="https://github.com/RSATom/Qt/blob/master/qtlocation/src/positioning/qgeolocation.h" target="_blank" rel="external">这里</a>把代码复制粘贴在头文件里。</p>
+<p>保存，重新运行<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<p>再次等了很久，没有Error了！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/blog-transfer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">独立博客迁移</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="install-pyqt" data-title="在MacOS上安装PyQt5" data-url="http://hexo4witty.sinaapp.com/2015/12/install-pyqt/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Liangchen Luo
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
