@@ -14,8 +14,8 @@
 <meta property="og:site_name" content="Lolo's Blog">
 <meta property="og:description" content="今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。
 因为计划在寒假里完成的项目有一个就是做一个“北大校园卡打卡器”，所以需要学习一下PC/SC相关的API. 在网上能检索到的教程并不多，大概过了一遍几个比较流行的Wrapper，">
-<meta property="og:image" content="http://hexo4witty.sinaapp.com/assests/img/install-pyqt/qtdemo.jpg">
-<meta property="og:updated_time" content="2016-01-26T12:39:26.000Z">
+<meta property="og:image" content="http://hexo4witty.sinaapp.com/assets/img/install-pyqt/qtdemo.jpg">
+<meta property="og:updated_time" content="2016-03-23T05:37:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在MacOS上安装PyQt5">
 <meta name="twitter:description" content="今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。
@@ -270,7 +270,7 @@
 <p>至此安装结束~</p>
 <h3 id="u4E8C_u3001_u6D4B_u8BD5_u5B89_u88C5_u7ED3_u679C"><a href="#u4E8C_u3001_u6D4B_u8BD5_u5B89_u88C5_u7ED3_u679C" class="headerlink" title="二、测试安装结果"></a>二、测试安装结果</h3><p>你可以利用PyQt里的examples测试安装结果，不同的PyQt版本examples的路径可能不同，请注意按照你安装的版本来<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd examples/qtdemo&#10;$ python3 qtdemo.py</span><br></pre></td></tr></table></figure></p>
 <p>如果弹出一个Qt Examples窗口则以上安装成功。</p>
-<p><img src="/assests/img/install-pyqt/qtdemo.jpg" alt="qtdemo"></p>
+<p><img src="/assets/img/install-pyqt/qtdemo.jpg" alt="qtdemo"></p>
 <h3 id="u4E09_u3001_u5B89_u88C5_u4E2D_u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898"><a href="#u4E09_u3001_u5B89_u88C5_u4E2D_u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="三、安装中可能遇到的问题"></a>三、安装中可能遇到的问题</h3><p>(3.0) PyQt5和Qt的协议不匹配<br>在配置PyQt5时可能出现如下问题：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: This version of PyQt5 and the commercial version of Qt have incompatible licenses.</span><br></pre></td></tr></table></figure></p>
 <p>错误原因是Qt的版本是商业版本，而PyQt5是开源版本的。<br>这个错误蛮诡异因为下载Qt是我也选择的是开源版本，目测是Qt给的离线版本只有商业版。所以如果网速可以的话可以用Qt的在线版本下载，应该可以避免这个问题。</p>
 <p>不过这个错误还是可以处理一下的。我们打开PyQt5下的configure.py，查找刚刚的错误message：This version of PyQt5 and the commercial…<br>检索到如下代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> introspecting <span class="keyword">and</span> target_config.qt_licensee <span class="keyword">not</span> <span class="keyword">in</span> OPEN_SOURCE_LICENSEES <span class="keyword">and</span> ltype == <span class="string">'GPL'</span>:</span><br><span class="line">         error(</span><br><span class="line">                 <span class="string">"This version of PyQt5 and the commercial version of Qt have "</span></span><br><span class="line">                 <span class="string">"incompatible licenses."</span>)</span><br></pre></td></tr></table></figure></p>
