@@ -119,7 +119,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/CAPU/" style="font-size: 20px;">CAPU</a> <a href="/tags/Hackathon/" style="font-size: 10px;">Hackathon</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/修车/" style="font-size: 15px;">修车</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/CAPU/" style="font-size: 20px;">CAPU</a> <a href="/tags/Hackathon/" style="font-size: 10px;">Hackathon</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/修车/" style="font-size: 16.67px;">修车</a> <a href="/tags/开发者/" style="font-size: 10px;">开发者</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/随笔/" style="font-size: 13.33px;">随笔</a>
 					</div>
 				</section>
 				
@@ -196,6 +196,135 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-essay-developer-community" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/essay-developer-community/" class="article-date">
+  	<time datetime="2016-08-24T16:00:00.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/essay-developer-community/">北大里的开发者如何愉快地面基</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>进燕园2年，撸代码若干年。</p>
+<p>只从加入PKU Helper算起的话，是几乎整整1年。稳定的输出着一个个*.java，看Google I/O大会，开始关注架构与安全；Github上首次收获了陌生人的star和fork，搭了自己的主页luolc.com；买了服务器，知道了Apache和SQL是何物。</p>
+<p>作为程序员，看起来是成长了不少：技能树点的越来越丰满，会的语言也不知不觉上了两位数，甚至开始有猎头伸出橄榄枝了。</p>
+<p>而作为程序员，困惑的事情倒是一直没变过。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发者/">开发者</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/essay-developer-community/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-develop-android-library-to-jcenter" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/develop-android-library-to-jcenter/" class="article-date">
+  	<time datetime="2016-06-15T16:00:00.000Z" itemprop="datePublished">2016-06-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/develop-android-library-to-jcenter/">发布Android Library到Jcenter</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="u914D_u7F6Ebuild-gradle"><a href="#u914D_u7F6Ebuild-gradle" class="headerlink" title="配置build.gradle"></a>配置build.gradle</h2><p>在需要发布的Library的gradle文件内(<code>build.gradle (Module: {your library name})</code>)内做如下修改。<br>在文件末尾添加<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ext &#123;</span><br><span class="line">    PUBLISH_GROUP_ID = &#123;your <span class="keyword">group</span> id&#125;</span><br><span class="line">    PUBLISH_ARTIFACT_ID = &#123;library artifact id&#125;</span><br><span class="line">    PUBLISH_VERSION = &#123;library version&#125;</span><br><span class="line">&#125;</span><br><span class="line">apply <span class="keyword">from</span>: <span class="string">'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'</span></span><br></pre></td></tr></table></figure></p>
+<p>其中</p>
+<ul>
+<li>PUBLISH_GROUP_ID：开发组织ID，一般是域名的倒叙</li>
+<li>PUBLISH_ARTIFACT_ID：Library的ID，给它起个名字吧</li>
+<li>PUBLISH_VERSION：Library要发布的版本<br>形如<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ext &#123;</span><br><span class="line">    PUBLISH_GROUP_ID = <span class="string">'com.luolc.dev'</span></span><br><span class="line">    PUBLISH_ARTIFACT_ID = <span class="string">'litesyllabusview'</span></span><br><span class="line">    PUBLISH_VERSION = <span class="string">'1.0.4'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当发布到Jcenter后，就可以按如下形式compile你的Library了<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">"PUBLISH_GROUP_ID:PUBLISH_ARTIFACT_ID:PUBLISH_VERSION"</span></span><br></pre></td></tr></table></figure></p>
+<p>形如<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">"com.luolc.dev:litesyllabusview:1.0.4"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-develop-android-studio-png-gradle-error" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -696,129 +825,10 @@
 
 
   
-    <article id="post-install-pyqt" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2015/12/install-pyqt/" class="article-date">
-  	<time datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished">2015-12-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/install-pyqt/">在MacOS上安装PyQt5</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天借来了学生会实践部买来的NFC射频读卡器，在我的Windows本上刷校园卡玩了玩。据PKU OSA群里的小伙伴说，有人拆开北大校园卡发现使用的是ISO14443，这一点有待确认（然而我实在心疼我的卡，暂时先不动它了）。</p>
-<p>因为计划在寒假里完成的项目有一个就是做一个“北大校园卡打卡器”，所以需要学习一下PC/SC相关的API. 在网上能检索到的教程并不多，大概过了一遍几个比较流行的Wrapper，直观上感觉由Python封装的pyscard应当是其中比较适合我来使用的。当然具体的学习实践统统要丢到假期里完成，最近真的要好好复习，否则Die…（咦这句话怎么耳熟）</p>
-<p>这个项目目前看起来要实现的最主要部分就是PC平台的客户端（PC/SC也有Android支持，然而一来成熟的库很少，二来感觉产品成熟之前还不需要迁移到移动平台），为了能让使用者的体验稍微好一点，我们需要完成一个GUI.</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/12/install-pyqt/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-blog-transfer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/blog-transfer/" class="article-date">
-  	<time datetime="2015-12-19T16:00:00.000Z" itemprop="datePublished">2015-12-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/blog-transfer/">独立博客迁移</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>受到初中小伙伴Zaodie的启发，我从今年暑假起开始撰写独立博客并托管到SAE上。但是接近一个学期的使用下来，感觉仍有很多不满意的地方。一来WordPress+虚拟云的体量对于自己而言仍然有些显得臃肿，而在定制性而言，去修改WordPress Theme的源码以满足个性化的需求其实比较繁琐。另一个极大的不便在于，虽然WordPress官网对于Markdown语法的支持已经相当完善，然而其官方插件必须要认证WordPress ID才可以使用，这显然无法迁移到托管在虚拟云上的博客中。</p>
-<p>作为一个Markdown的忠实使用者，无法流畅的使用Markdown撰写博客是很苦恼的。这几个月来更新极少，其中很大一部分就要归咎于一直没有找到在WordPress上优秀的Markdown插件。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/12/blog-transfer/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">
