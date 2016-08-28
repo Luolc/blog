@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 日常 | Lolo&#39;s Blog</title>
+  <title>Git Workflow学习笔记 | Lolo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lolo's Blog">
-<meta property="og:url" content="http://blog.luolc.com/tags/日常/index.html">
+  <meta name="description" content="接触了Git和Github有一整年的时间了，最开始只是朴素的把Github作为一个远程的代码备份，完全没有发挥出Git任何版本控制的特性。而后的一年里，先后加入了PKU Helper和CAPU网络组，才了解到了协作开发这个概念，期间探索使用过一些不同的协作模式，有了些直观感受。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Workflow学习笔记">
+<meta property="og:url" content="http://blog.luolc.com/2016/08/develop-git-workflow/index.html">
 <meta property="og:site_name" content="Lolo's Blog">
-<meta property="og:description">
+<meta property="og:description" content="接触了Git和Github有一整年的时间了，最开始只是朴素的把Github作为一个远程的代码备份，完全没有发挥出Git任何版本控制的特性。而后的一年里，先后加入了PKU Helper和CAPU网络组，才了解到了协作开发这个概念，期间探索使用过一些不同的协作模式，有了些直观感受。">
+<meta property="og:updated_time" content="2016-08-28T17:39:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lolo's Blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Git Workflow学习笔记">
+<meta name="twitter:description" content="接触了Git和Github有一整年的时间了，最开始只是朴素的把Github作为一个远程的代码备份，完全没有发挥出Git任何版本控制的特性。而后的一年里，先后加入了PKU Helper和CAPU网络组，才了解到了协作开发这个概念，期间探索使用过一些不同的协作模式，有了些直观感受。">
   
     <link rel="alternative" href="/atom.xml" title="Lolo&#39;s Blog" type="application/atom+xml">
   
@@ -195,53 +196,122 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-develop-git-workflow" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/blog-transfer/" class="archive-article-date">
-  	<time datetime="2015-12-19T16:00:00.000Z" itemprop="datePublished">Dec 20</time>
+    <div class="article-meta">
+      <a href="/2016/08/develop-git-workflow/" class="article-date">
+  	<time datetime="2016-08-25T16:00:00.000Z" itemprop="datePublished">2016-08-26</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/blog-transfer/">独立博客迁移</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git Workflow学习笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>接触了Git和Github有一整年的时间了，最开始只是朴素的把Github作为一个远程的代码备份，完全没有发挥出Git任何版本控制的特性。而后的一年里，先后加入了PKU Helper和CAPU网络组，才了解到了<code>协作开发</code>这个概念，期间探索使用过一些不同的协作模式，有了些直观感受。</p>
+<a id="more"></a>
+<p>最近系统的学习了几种经典的Git Workflow，感觉获益良多。PKU Helper开发组又迎来了新的一年，很多地方焕然一新。Android版本重构，加之此前信息泄露事件中fork关系意外丢失，使得这正好是一个契机来新建一个repo，并重新规范Android开发的整个流程。<br>为了未来产品能更好的传承，要尽可能的<strong>规范</strong>开发中的一切环节。而<code>协作模式</code>则是团队开发中最基本的规范。它应当严谨而清晰明了，使得新加入的贡献者可以快速上手，并能够不破坏已有的开发模式。</p>
+<p>更进一步，我一直期望推行的PKU Helper开源化，其中一个重要的前提就是：我们需要找到一个合理的协作开发模式，使园子里任何一位愿意为Helper贡献代码的同学都能够真正参与进来，并保证产品的开发流程稳定、顺利的执行而不至于混乱。</p>
+<p>(未完)</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/develop-android-childfragmentmanager/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Fragment嵌套Fragment时正确的获取FragmentManager
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/essay-developer-community/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">园子里的开发者如何愉快地面基</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="develop-git-workflow" data-title="Git Workflow学习笔记" data-url="http://blog.luolc.com/2016/08/develop-git-workflow/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"luolcblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -267,9 +337,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
