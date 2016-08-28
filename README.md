@@ -1,2 +1,2 @@
 # blog
-My person blog: [blog.luolc.com](http://blog.luolc.com)
+My personal blog: [blog.luolc.com](http://blog.luolc.com)
