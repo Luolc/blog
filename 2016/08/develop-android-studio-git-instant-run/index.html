@@ -4,17 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/3 | Lolo&#39;s Blog</title>
+  <title>Git切换分支后Android Studio编译无效 | Lolo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lolo's Blog">
-<meta property="og:url" content="http://blog.luolc.com/archives/2016/03/index.html">
+  <meta name="description" content="在研究了Git Workflow并在PKU Helper for Android开发中投入实践了一段时间后，发现一个奇怪的问题。在Git本地切换分支之后，进入Android Studio编译，应用毫无变化。这个时候如果把应用下载再进行编译，甚至会报如下异常：
+1234Unable to instantiate application com.android.tools.fd.runtime.Boo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git切换分支后Android Studio编译无效">
+<meta property="og:url" content="http://blog.luolc.com/2016/08/develop-android-studio-git-instant-run/index.html">
 <meta property="og:site_name" content="Lolo's Blog">
-<meta property="og:description">
+<meta property="og:description" content="在研究了Git Workflow并在PKU Helper for Android开发中投入实践了一段时间后，发现一个奇怪的问题。在Git本地切换分支之后，进入Android Studio编译，应用毫无变化。这个时候如果把应用下载再进行编译，甚至会报如下异常：
+1234Unable to instantiate application com.android.tools.fd.runtime.Boo">
+<meta property="og:updated_time" content="2016-08-31T15:40:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lolo's Blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Git切换分支后Android Studio编译无效">
+<meta name="twitter:description" content="在研究了Git Workflow并在PKU Helper for Android开发中投入实践了一段时间后，发现一个奇怪的问题。在Git本地切换分支之后，进入Android Studio编译，应用毫无变化。这个时候如果把应用下载再进行编译，甚至会报如下异常：
+1234Unable to instantiate application com.android.tools.fd.runtime.Boo">
   
     <link rel="alternative" href="/atom.xml" title="Lolo&#39;s Blog" type="application/atom+xml">
   
@@ -195,208 +199,115 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-develop-android-studio-git-instant-run" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/08/develop-android-studio-git-instant-run/" class="article-date">
+  	<time datetime="2016-08-30T16:00:00.000Z" itemprop="datePublished">2016-08-31</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git切换分支后Android Studio编译无效
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/capu-omamori/" class="archive-article-date">
-  	<time datetime="2016-03-27T16:00:00.000Z" itemprop="datePublished">Mar 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/capu-omamori/">御守常伴</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在研究了<a href="/2016/08/develop-git-workflow/">Git Workflow</a>并在PKU Helper for Android开发中投入实践了一段时间后，发现一个奇怪的问题。在Git本地切换分支之后，进入Android Studio编译，应用毫无变化。这个时候如果把应用下载再进行编译，甚至会报如下异常：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Unable to instantiate application </span><br><span class="line">com<span class="class">.android</span><span class="class">.tools</span><span class="class">.fd</span><span class="class">.runtime</span><span class="class">.BootstrapApplication</span>: </span><br><span class="line">java<span class="class">.lang</span><span class="class">.IllegalStateException</span>: java<span class="class">.lang</span><span class="class">.ClassNotFoundException</span>: </span><br><span class="line">com<span class="class">.pkuhelper</span><span class="class">.AppContext</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>AppContext</code>是PKU Helper的应用入口，这个找不到类名的异常十分莫名。</p>
+<p>StackOverflow之，得知是<code>Instant Run</code>的锅。</p>
+<p><code>Instant Run tries to do hot swapping of your code; this causes the application class to be moved.</code></p>
+<p>这玩意还是有不少坑的啊……</p>
+<p>另，关闭<code>Instant Run</code>的步骤：<br><code>Settings -&gt; Build, Execution, Deployment -&gt; Instant Run -&gt; 取消勾选Enable Instant Run...</code></p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/capu-docs-extra-push/" class="archive-article-date">
-  	<time datetime="2016-03-24T16:00:00.000Z" itemprop="datePublished">Mar 25</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/capu-docs-extra-push/">CAPU技术组考核番外篇之一『推人』</a>
-    </h1>
   
+    <a href="/2016/08/develop-android-childfragmentmanager/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Fragment嵌套Fragment时正确的获取FragmentManager</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/修车/">修车</a></li></ul>
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/capu-docs-pull/" class="archive-article-date">
-  	<time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">Mar 24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/capu-docs-pull/">CAPU技术组考核项目笔记之四『牵车』</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/修车/">修车</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/capu-docs-shift/" class="archive-article-date">
-  	<time datetime="2016-03-22T16:00:00.000Z" itemprop="datePublished">Mar 23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/capu-docs-shift/">CAPU技术组考核项目笔记之三『变速』</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/修车/">修车</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="develop-android-studio-git-instant-run" data-title="Git切换分支后Android Studio编译无效" data-url="http://blog.luolc.com/2016/08/develop-android-studio-git-instant-run/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"luolcblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/capu-docs-tube-and-tyre/" class="archive-article-date">
-  	<time datetime="2016-03-14T16:00:00.000Z" itemprop="datePublished">Mar 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/capu-docs-tube-and-tyre/">CAPU技术组考核项目笔记之二『补胎』</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/修车/">修车</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/capu-docs-brake/" class="archive-article-date">
-  	<time datetime="2016-03-07T16:00:00.000Z" itemprop="datePublished">Mar 8</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/capu-docs-brake/">CAPU技术组考核项目笔记之一『刹车』</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/修车/">修车</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -422,8 +333,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

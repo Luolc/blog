@@ -74,13 +74,13 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
-						<li>关于</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -119,7 +119,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/CAPU/" style="font-size: 20px;">CAPU</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hackathon/" style="font-size: 10px;">Hackathon</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/修车/" style="font-size: 16.67px;">修车</a> <a href="/tags/开发者/" style="font-size: 10px;">开发者</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/随笔/" style="font-size: 13.33px;">随笔</a>
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 13.33px;">Android Studio</a> <a href="/tags/CAPU/" style="font-size: 20px;">CAPU</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hackathon/" style="font-size: 10px;">Hackathon</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/修车/" style="font-size: 16.67px;">修车</a> <a href="/tags/开发者/" style="font-size: 10px;">开发者</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/随笔/" style="font-size: 13.33px;">随笔</a>
 					</div>
 				</section>
 				
@@ -196,6 +196,69 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-develop-android-studio-git-instant-run" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/develop-android-studio-git-instant-run/" class="article-date">
+  	<time datetime="2016-08-30T16:00:00.000Z" itemprop="datePublished">2016-08-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/develop-android-studio-git-instant-run/">Git切换分支后Android Studio编译无效</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在研究了<a href="/2016/08/develop-git-workflow/">Git Workflow</a>并在PKU Helper for Android开发中投入实践了一段时间后，发现一个奇怪的问题。在Git本地切换分支之后，进入Android Studio编译，应用毫无变化。这个时候如果把应用下载再进行编译，甚至会报如下异常：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Unable to instantiate application </span><br><span class="line">com<span class="class">.android</span><span class="class">.tools</span><span class="class">.fd</span><span class="class">.runtime</span><span class="class">.BootstrapApplication</span>: </span><br><span class="line">java<span class="class">.lang</span><span class="class">.IllegalStateException</span>: java<span class="class">.lang</span><span class="class">.ClassNotFoundException</span>: </span><br><span class="line">com<span class="class">.pkuhelper</span><span class="class">.AppContext</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>AppContext</code>是PKU Helper的应用入口，这个找不到类名的异常十分莫名。</p>
+<p>StackOverflow之，得知是<code>Instant Run</code>的锅。</p>
+<p><code>Instant Run tries to do hot swapping of your code; this causes the application class to be moved.</code></p>
+<p>这玩意还是有不少坑的啊……</p>
+<p>另，关闭<code>Instant Run</code>的步骤：<br><code>Settings -&gt; Build, Execution, Deployment -&gt; Instant Run -&gt; 取消勾选Enable Instant Run...</code></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-develop-android-childfragmentmanager" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -735,70 +798,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/03/capu-docs-tube-and-tyre/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-capu-docs-brake" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/capu-docs-brake/" class="article-date">
-  	<time datetime="2016-03-07T16:00:00.000Z" itemprop="datePublished">2016-03-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/capu-docs-brake/">CAPU技术组考核项目笔记之一『刹车』</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><strong>时间线</strong>：第三教学周，春训第一周</li>
-<li><strong>概述</strong>：原理、理论考核问题整理</li>
-<li><strong>TO-DO</strong>：来令片更换详解(2015技术组实践考核要求)、V刹闸皮更换详解(2016技术组实践考核要求)</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAPU/">CAPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/修车/">修车</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/capu-docs-brake/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
